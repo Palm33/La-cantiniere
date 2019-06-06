@@ -1,0 +1,92 @@
+<div class="container">
+  <div class="row">
+     <ul id="tabsNav" class="tabsNav nav">
+         <a routerLink="/recapCantiniere" class="nav-item nav-link nav-link-custom small text-uppercase col-12 col-xl-3 mb-2">Récapitulatif</a>
+         <a routerLink="/platCantiniere" class="nav-item nav-link nav-link-custom small text-uppercase col-12 col-xl-3 mb-2">Plats</a>
+         <a routerLink="/menuCantiniere" class="nav-item nav-link nav-link-custom small text-uppercase col-12 col-xl-3 mb-2">Menu</a>
+         <a routerLink="/utilisateur" class="nav-item nav-link nav-link-custom small text-uppercase col-12 col-xl-3 mb-2">utilisateur</a>
+       </ul>
+ </div>
+  <form class="row form">
+      <div class="col-12 col-xl-6">
+        <label for="inputPassword2" class="sr-only">Password</label>
+        <input type="text" class="form-control" id="" placeholder="Plat">
+      </div>
+      <div class="col-12 col-xl-6 text-center">
+      <button type="submit" class="btn btn-primary mb-2 valider">Ajouter</button>
+    </div>
+    </form>
+  </div>
+   <div class="container-fluid">
+    <div class="row tab plat">
+      <div class="col">
+        <div class="days">
+          <li class="nav-item nav-link nav-link-custom small text-uppercase ">Lundi</li>
+        </div>
+        <div class="selMenu">
+          <select class="sel">
+            <option value="" *ngFor="let plat of listPlatsWeek">{{plat.label}}</option>
+          </select>
+          <select class="sel">
+            <option value="" *ngFor="let plat of listPlatsWeek">{{plat.label}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="days">
+            <li class="nav-item nav-link nav-link-custom small text-uppercase ">Mardi</li>
+        </div>
+        <div class="selMenu">
+            <select class="sel">
+              <option value="" *ngFor="let plat of listPlatsWeek">{{plat.label}}</option>
+            </select>
+            <select class="sel">
+              <option value="" *ngFor="let plat of listPlatsWeek">{{plat.label}}</option>
+            </select>
+          </div>
+      </div>
+      <div class="col">
+          <div class="days">
+              <li class="nav-item nav-link nav-link-custom small text-uppercase ">Mercredi</li>
+          </div>
+          <div class="selMenu">
+              <select class="sel">
+                <option value="" *ngFor="let plat of listPlatsWeek">{{plat.label}}</option>
+              </select>
+              <select class="sel">
+                <option value="" *ngFor="let plat of listPlatsWeek">{{plat.label}}</option>
+              </select>
+            </div>
+      </div>
+      <div class="col">
+          <div class="days">
+              <li class="nav-item nav-link nav-link-custom small text-uppercase ">Jeudi</li>
+          </div>
+          <div class="selMenu">
+          <select class="sel">
+            <option value="" *ngFor="let plat of listPlatsWeek">{{plat.label}}</option>
+          </select>
+          <select class="sel">
+            <option value="" *ngFor="let plat of listPlatsWeek">{{plat.label}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="days">
+            <li class="nav-item nav-link nav-link-custom small text-uppercase ">Vendredi</li>
+        </div>
+        <div class="selMenu">
+        <select class="sel">
+            <option value="" *ngFor="let plat of listPlatsWeek">{{plat.label}}</option>
+        </select>
+        <select class="sel">
+            <option value="" *ngFor="let plat of listPlatsWeek">{{plat.label}}</option>
+        </select>
+      </div>
+      </div>
+    </div>
+   </div>
+
+  <div class="valid">
+   <button class="btn btn-primary valider">Valider</button>
+  </div>

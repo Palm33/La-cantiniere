@@ -1,0 +1,44 @@
+p {
+  color: white;
+  font-size: 80px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
+    ),
+    url("../../../assets/img/food-acceuil.jpg") no-repeat center center fixed;
+  /* opacity: 0.8; */
+  height: calc(100vh - 93px);
+}
+
+.btn-commander {
+  margin-top: 60px;
+  font-size: 25px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 23px;
+  background-color: #cb2a3f;
+  color: white;
+}
+
+.btn-admin {
+  margin-top: 60px;
+  font-size: 25px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 23px;
+}
+
+.paragraph {
+  margin-top: -80px;
+}

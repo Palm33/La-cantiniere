@@ -1,0 +1,18 @@
+.buttons {
+  width: 150px;
+}
+
+.container {
+  height: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  background: #f0f0f0;
+  border-radius: 3%;
+}
+
+.connexion {
+  font-family: 'Open Sans', sans-serif;
+}

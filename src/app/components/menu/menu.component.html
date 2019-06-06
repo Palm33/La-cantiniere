@@ -1,0 +1,244 @@
+<div class="container-fluid">
+  <br>
+  <br>
+  <h1 class="text-center h1 font-weight-bold text-danger">Les menus</h1>
+  <br>
+  <ul id="tabsNav" class="tabsNav nav">
+    <!-- <li class="nav-item nav-link nav-link-custom small text-uppercase active" [class.active]="viewMode == 'tabFormules'"
+      rel="tabFormules" (click)="viewMode ='tabFormules'">Formules</li>
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active"
+      [class.active]="viewMode == 'tabSandwichs'" rel="tabSandwichs" (click)="viewMode ='tabSandwichs'">Sandwichs</li>
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active"
+      [class.active]="viewMode == 'tabViennoiseries'" rel="tabViennoiseries" (click)="viewMode ='tabViennoiseries'">
+      Viennoiseries</li>
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active" [class.active]="viewMode == 'tabDesserts'"
+      rel="tabDesserts" (click)="viewMode ='tabDesserts'">Desserts</li>
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active"
+      [class.active]="viewMode == 'tabBoissonsC'" rel="tabBoissonsC" (click)="viewMode ='tabBoissonsC'">Boissons chaudes
+    </li>
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active"
+      [class.active]="viewMode == 'tabBoissonsF'" rel="tabBoissonsF" (click)="viewMode ='tabBoissonsF'">Boissons
+      fraiches</li> -->
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active" [class.active]="viewMode == 'tabToday'"
+      rel="tabToday" (click)="viewMode ='tabToday'">Aujourd'hui
+    </li>
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active" [class.active]="viewMode == 'tabThisWeek'"
+      rel="tabThisWeek" (click)="viewMode ='tabThisWeek'">Cette semaine
+    </li>
+  </ul>
+
+  <div id="tabsContent" class="tab-content tabsContent" [ngSwitch]="viewMode">
+
+    <div id="tabThisWeek" *ngSwitchCase="'tabThisWeek'" class="tab-pane fade active show">
+      <ng-container *ngFor="let menu of listMenuThisWeek">
+        <div class="card align-top">
+          <img class="card-img-top" src="../../../assets/menu-default.png">
+          <div class="card-body">
+            <h5 class="card-title-custom mb-3 text-uppercase"> {{ menu.label }}</h5>
+            <mat-divider>
+            </mat-divider>
+            <br>
+            <span class="card-text" *ngFor="let meal of menu.meals"> •
+              {{ meal.label }}
+              <br></span>
+            <br>
+            <mat-divider>
+            </mat-divider>
+            <br>
+            <p class="card-text price">
+              {{ menu.priceDF }} €
+            </p>
+          </div>
+        </div>
+      </ng-container>
+      <!-- <div class="card">
+        <img class="card-img-top" src="../../../assets/img/plat-1.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Spaghetti à la sauce gremolata</b></h5>
+          <div>
+            <span class="price text-center">7.30€</span>
+          </div>
+        </div>
+      </div> -->
+    </div>
+
+    <div id="tabToday" *ngSwitchCase="'tabToday'" class="tab-pane fade active show">
+      <ng-container *ngFor="let menu of listMenuToday">
+        <div class="card align-top">
+          <img class="card-img-top" src="../../../assets/menu-default.png">
+          <div class="card-body">
+            <h5 class="card-title-custom mb-3 text-uppercase"> {{ menu.label }}</h5>
+            <mat-divider>
+            </mat-divider>
+            <br>
+            <span class="card-text align-self-start" *ngFor="let meal of menu.meals"> •
+              {{ meal.label }}
+              <br></span>
+            <br>
+            <mat-divider>
+            </mat-divider>
+            <br>
+            <p class="card-text price">
+              {{ menu.priceDF }} €
+            </p>
+            <!-- <p class="card-text price text-center">{{ meal.priceDF }} €</p> -->
+          </div>
+        </div>
+      </ng-container>
+      <!-- <div class="card">
+          <img class="card-img-top" src="../../../assets/img/plat-1.jpg">
+          <div class="card-body">
+            <h5 class="card-title-custom"><b>Spaghetti à la sauce gremolata</b></h5>
+            <div>
+              <span class="price text-center">7.30€</span>
+            </div>
+          </div>
+        </div> -->
+    </div>
+
+
+    <!-- 
+    <div id="tabSandwichs" *ngSwitchCase="'tabSandwichs'" class="tab-pane fade active show">
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/plat-2.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Carbonara della Mamma</b></h5>
+          <div>
+            <span class="price text-center">5.30€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/plat-3.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Bowl de riz vinaigré aux légumes</b></h5>
+          <div>
+            <span class="price text-center">6.00€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/plat-4.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Poké Bowl veggie bikini</b></h5>
+          <div>
+            <span class="price text-center">6.60€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="tabViennoiseries" *ngSwitchCase="'tabViennoiseries'" class="tab-pane fade active show">
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/plat-6.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Chili con carne con bacon</b></h5>
+          <div>
+            <span class="price text-center">5.90€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/plat-7.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Poké Bowl ceviche</b></h5>
+          <div>
+            <span class="price text-center">6.50€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/plat-8.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Crevettes à la chermoula</b></h5>
+          <div>
+            <span class="price text-center">7.50€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tabDesserts" *ngSwitchCase="'tabDesserts'" class="tab-pane fade active show">
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/plat-9.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Linguine poulet, citron & parmesan</b></h5>
+          <div>
+            <span class="price text-center">9.30€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/plat-5.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Dhal au lait de coco</b></h5>
+          <div>
+            <span class="price text-center">6.30€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tabBoissonsC" *ngSwitchCase="'tabBoissonsC'" class="tab-pane fade active show">
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/boissonC-1.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Cappuccino</b></h5>
+          <div>
+            <span class="price text-center">1.70€</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/boissonC-2.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Americano</b></h5>
+          <div>
+            <span class="price text-center">1.40€</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/boissonC-3.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Chai latte</b></h5>
+          <div>
+            <span class="price text-center">1.20€</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="tabBoissonsF" *ngSwitchCase="'tabBoissonsF'" class="tab-pane fade active show">
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/plat-10.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Tartiflette</b></h5>
+          <div>
+            <span class="price text-center">8.70€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="../../../assets/img/plat-11.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Salade de bœuf façon thaï</b></h5>
+          <div>
+            <span class="price text-center">9.90€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+
+    </div> -->
+  </div>
+  <br><br><br>
+  <ng-template #snackBarTemplateError>
+    <div class="text-center text-danger2 font-weight-bold">
+      ⚠️ Vérifier que l'application est lancée (Eclipse).
+    </div>
+  </ng-template>
+</div>

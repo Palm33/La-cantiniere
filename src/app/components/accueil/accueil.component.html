@@ -1,0 +1,13 @@
+<div class="body">
+  <div class="paragraph">
+    <p class="animated fadeIn">Mangez frais, Mangez prêt</p>
+    <p class="animated fadeIn delay-1s">Commandez avant 10h30</p>
+  </div>
+  <button type="button" class="btn btn-commander" [routerLink]="['/menu']" *ngIf="userConnected.isLunchLady == 0">
+    Commander
+  </button>
+  <button type="button" class="btn btn-primary btn-admin btn-outline-light ml-2" *ngIf="userConnected.isLunchLady == 1"
+    [routerLink]="['/cantiniereRecap']">
+    Administrer
+  </button>
+</div>

@@ -1,0 +1,267 @@
+<div class="container-fluid">
+  <br>
+  <br>
+  <h1 class="text-center h1 font-weight-bold text-danger">Les plats de la semaine</h1>
+  <br>
+  <br>
+  <!-- On définit les différents boutons -->
+  <ul id="tabsNav" class="tabsNav nav">
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active" [class.active]="viewMode == 'tabLundi'"
+      rel="tabLundi" (click)="viewMode ='tabLundi'">Lundi</li>
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active" [class.active]="viewMode == 'tabMardi'"
+      rel="tabMardi" (click)="viewMode ='tabMardi'">Mardi</li>
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active" [class.active]="viewMode == 'tabMercredi'"
+      rel="tabMercredi" (click)="viewMode ='tabMercredi'">Mercredi</li>
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active" [class.active]="viewMode == 'tabJeudi'"
+      rel="tabJeudi" (click)="viewMode ='tabJeudi'">Jeudi</li>
+    <li class="nav-item nav-link nav-link-custom small text-uppercase active" [class.active]="viewMode == 'tabVendredi'"
+      rel="tabVendredi" (click)="viewMode ='tabVendredi'">Vendredi</li>
+    <li class="nav-item nav-link nav-link-all text-uppercase active" [class.active]="viewMode == 'tabAll'" rel="tabAll"
+      (click)="viewMode ='tabAll'">All</li>
+  </ul>
+
+  <div id="tabsContent" class="tab-content tabsContent" [ngSwitch]="viewMode">
+
+    <!-- Pour "All", on récupère tous les plats avec listPlatsWeek -->
+    <div id="tabAll" *ngSwitchCase="'tabAll'" class="tab-pane fade active show">
+      <ng-container *ngFor="let meal of listPlatsWeek; let i = index">
+        <div class="card align-top">
+          <img class="card-img-top" src="../../../assets/menu-default.png" (click)="openAddModal(ajoutPanier)">
+          <div class="card-body">
+            <h5 class="card-title-custom" (click)="openAddModal(ajoutPanier)"> <b>{{ meal.label }}</b></h5>
+            <p class=" card-text">{{ meal.description }}</p>
+            <p class="card-text price text-center">{{ meal.priceDF }} €</p>
+          </div>
+        </div>
+
+        <ng-template #ajoutPanier let-modal>
+          <div class="modal-header d-inline-block">
+            <button type="button" class="close float-right" aria-describedby="modal-title"
+              (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title font-weight-bolder" id="modal-basic-title">Ajouter au panier</h4>
+            <h4 class="text-dark">{{ meal.label }}</h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="img-div">
+              <img class="img-meal" src="../../../assets/menu-default.png">
+            </div>
+
+            <div class="ingredients" *ngIf="meal.ingredients != null">
+              <h4 class="text-center"><b>Ingrédients :</b></h4>
+              <div class="row" *ngFor="let ingredient of meal.ingredients">
+                <h5 class="col-12 text-center">• {{ ingredient.label }}</h5>
+              </div>
+            </div>
+
+
+            <div class="float-left">
+              <p>
+                <strong>
+                  <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" [(ngModel)]="theChoice">
+                    <mat-radio-button class="radio-button" *ngFor="let choice of choices" [value]="choice">
+                      {{choice}}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </strong>
+              </p>
+            </div>
+            <br>
+            <div class="float-right full">
+              <mat-form-field>
+                <mat-label>Quantité</mat-label>
+                <mat-select [(value)]="selectedQuantity">
+                  <mat-option value="1">1</mat-option>
+                  <mat-option value="2">2</mat-option>
+                  <mat-option value="3">3</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="modal.dismiss('cancel click')">Retour</button>
+            <button type="button" class="btn btn-success" (click)="closeValiderAjoutPanier()">Valider</button>
+          </div>
+        </ng-template>
+
+      </ng-container>
+    </div>
+
+    <div id="tabLundi" *ngSwitchCase="'tabLundi'" class="tab-pane fade active show">
+      <div class="card align-top">
+        <img class="card-img-top" src="../../../assets/img/plat-1.jpg" (click)="openAddModal(ajoutPanier)">
+        <div class="card-body">
+          <h5 class="card-title-custom" (click)="openAddModal(ajoutPanier)"><b>Spaghetti à la sauce gremolata</b></h5>
+          <div>
+            <span class="price float-left">7.30€</span><a class="btn btn-add btn-danger float-right text-white"
+              style="cursor: pointer;" (click)="addToPanier()">+</a>
+          </div>
+
+
+          <!-- <ng-template #ajoutPanier let-modal>
+            <div class="modal-header d-inline-block">
+              <button type="button" class="close float-right" aria-describedby="modal-title"
+                (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title font-weight-bolder" id="modal-basic-title">Ajouter au panier</h4>
+              <h4 class="text-dark">Spaghetti à la sauce gremolata</h4>
+            </div>
+            <div class="modal-body">
+
+              <div class="row">
+                <h5></h5>
+              </div>
+
+              <div class="float-left">
+                <p>
+                  <strong>
+                    <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" [(ngModel)]="theChoice">
+                      <mat-radio-button class="radio-button" *ngFor="let choice of choices" [value]="choice">
+                        {{choice}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </strong>
+                </p>
+              </div>
+              <br>
+              <div class="float-right full">
+                <mat-form-field>
+                  <mat-label>Quantité</mat-label>
+                  <mat-select [(value)]="selectedQuantity">
+                    <mat-option value="1">1</mat-option>
+                    <mat-option value="2">2</mat-option>
+                    <mat-option value="3">3</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" (click)="modal.dismiss('cancel click')">Retour</button>
+              <button type="button" class="btn btn-success" (click)="closeValiderAjoutPanier()">Valider</button>
+            </div>
+          </ng-template> -->
+        </div>
+      </div>
+    </div>
+
+    <div id="tabMardi" *ngSwitchCase="'tabMardi'" class="tab-pane fade active show">
+      <div class="card align-top">
+        <img class="card-img-top" src="../../../assets/img/plat-2.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Carbonara della Mamma</b></h5>
+          <div>
+            <span class="price float-left">5.30€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card align-top">
+        <img class="card-img-top" src="../../../assets/img/plat-3.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Bowl de riz vinaigré aux légumes</b></h5>
+          <div>
+            <span class="price float-left">6.00€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card align-top">
+        <img class="card-img-top" src="../../../assets/img/plat-4.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Poké Bowl veggie bikini</b></h5>
+          <div>
+            <span class="price float-left">6.60€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="tabMercredi" *ngSwitchCase="'tabMercredi'" class="tab-pane fade active show">
+      <div class="card align-top">
+        <img class="card-img-top" src="../../../assets/img/plat-6.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Chili con carne con bacon</b></h5>
+          <div>
+            <span class="price float-left">5.90€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+      <div class="card align-top">
+        <img class="card-img-top" src="../../../assets/img/plat-7.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Poké Bowl ceviche</b></h5>
+          <div>
+            <span class="price float-left">6.50€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+      <div class="card align-top">
+        <img class="card-img-top" src="../../../assets/img/plat-8.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Crevettes à la chermoula</b></h5>
+          <div>
+            <span class="price float-left">7.50€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tabJeudi" *ngSwitchCase="'tabJeudi'" class="tab-pane fade active show">
+      <div class="card align-top">
+        <img class="card-img-top" src="../../../assets/img/plat-9.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Linguine poulet, citron & parmesan</b></h5>
+          <div>
+            <span class="price float-left">9.30€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+      <div class="card align-top">
+        <img class="card-img-top" src="../../../assets/img/plat-5.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Dhal au lait de coco</b></h5>
+          <div>
+            <span class="price float-left">6.30€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tabVendredi" *ngSwitchCase="'tabVendredi'" class="tab-pane fade active show">
+      <div class="card align-top">
+        <img class="card-img-top" src="../../../assets/img/plat-10.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Tartiflette</b></h5>
+          <div>
+            <span class="price float-left">8.70€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+      <div class="card align-top">
+        <img class="card-img-top" src="../../../assets/img/plat-11.jpg">
+        <div class="card-body">
+          <h5 class="card-title-custom"><b>Salade de bœuf façon thaï</b></h5>
+          <div>
+            <span class="price float-left">9.90€</span><a href="#" class="btn btn-add btn-danger float-right">+</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br><br><br>
+  <ng-template #snackBarTemplateError>
+    <div class="text-center text-danger2 font-weight-bold">
+      ⚠️ Vérifier que l'application est lancée (Eclipse).
+    </div>
+  </ng-template>
+  <ng-template #snackBarTemplateAjoutPanier>
+    <div class="text-center text-success font-weight-bold">
+      ✅ Plat ajouté au panier.
+    </div>
+  </ng-template>
+</div>
